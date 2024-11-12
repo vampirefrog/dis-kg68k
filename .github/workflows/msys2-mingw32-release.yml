@@ -25,9 +25,9 @@ jobs:
       - run: strip src/dis.exe
       - run: mkdir bin && mv src/dis.exe bin
       - name: Create zip file
-        run: zip -r dis-${{github.ref_name}}.zip bin docs include dis-${{github.ref_name}}.zip
+        run: zip -r dis-${{github.ref_name}}-win.zip bin docs include dis-${{github.ref_name}}.zip
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: dis-${{github.ref_name}}.zip
+          files: dis-${{github.ref_name}}-win.zip
