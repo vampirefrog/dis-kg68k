@@ -23,6 +23,7 @@ jobs:
           install: git make mingw64/mingw-w64-x86_64-gcc mingw64/mingw-w64-x86_64-portaudio mingw64/mingw-w64-x86_64-nsis
       - name: Build with make
         run: cd src && make
+      - run: mkdir bin && mv src/dis.exe bin
       - name: Set outputs
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -30,4 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dis-${{steps.vars.outputs.sha_short}}
-          path: "src/dis.exe"
+          path: |
+            bin
+            docs
+            include
